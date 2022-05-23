@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Demo Solr Search</title>
+	<meta charset="utf-8" /> 
+	<script src="https://use.fontawesome.com/a989b590e9.js"></script>
+	<link href="search.css" rel="stylesheet" type="text/css">
+	<script src="cors.js"></script>
+	<script src="pagination.js"></script>
+	<script src="solr.js"></script>
+</head>
+<body>
+	<h2>Sella - Solr8/Solr4 Search :</h2>
+	<form id="dataSearchForm" name="dataSearchForm">
+		<label for="bank">BANK</label><br>
+	    <select name="bank" id="bank">
+		    <option value="ALL">Tutti</option>
+		    <option value="HOMEBANKING,BSE">Banca Sella</option>
+  		    <option value="HOMEBANKING,SIB">Banca Patrimoni</option>
+		    <option value="HOMEBANKING,CLS">Carta LIS</option>
+		    <option value="HOMEBANKING,ILB">Illimity</option>		    
+		</select><br><br>
+		<label for="type">TYPE</label><br>
+	    <select name="type" id="type">
+		    <option value="ALL">Tutti</option>
+		    <option value="pagamenti">Pagamenti</option>
+  		    <option value="domanderisposte">Domanderisposte</option>
+		    <option value="altririsultati">Altririsultati</option>		        
+	    </select><br><br>
+		<input class="search-input" name="q" placeholder="Enter search term" type="text">
+		<input type="submit" value="Search" id="Search">
+		<input type="button" value="Insert All" id="Insert" onclick="insertData()">
+	</form>
+	<div class="loading" id="loading-div">
+		<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+		<span class="sr-only">Loading...</span>
+	</div>
+	<p>Search URL will be written below:</p>
+	<p id="searchUrl"></p>
+	<p>Search results will be written below:</p>
+
+
+	<div class="resultCount" id="resultCount"></div>
+	<div id="searchResults"></div>
+	<div class="pagination" id="pagination"></div>
+</body>
+</html>
+<style>
+	body{
+		background-color: floralwhite;
+	}
+	p,label,button{
+		color: blue;
+	}
+
+	#bank,#type {
+    padding: 5px;
+    color: #000;
+    font-size: 12px;
+    background: transparent;
+    -webkit-appearance: none;	
+	}	
+
+	#type {
+    padding: 5px;
+    color: #000;
+    font-size: 12px;
+    background: transparent;
+    -webkit-appearance: none;	
+	}
+
+	#bank option {
+	background-color: #82caff;
+	}
+	#type option {
+	background-color: #82caff;
+	}
+
+	#solrtable {
+	  font-family: Arial, Helvetica, sans-serif;
+	  border-collapse: collapse;
+	  width: 100%;
+	}
+	
+	#solrtable td, #solrtable th {
+	  border: 1px solid #ddd;
+	  padding: 8px;
+	}
+	
+	#solrtable tr:nth-child(even){background-color: #f2f2f2;}
+	
+	#solrtable tr:hover {background-color: #ddd;}
+	
+	#solrtable th {
+	  padding-top: 12px;
+	  padding-bottom: 12px;
+	  text-align: left;
+	  background-color: #04AA6D;
+	  color: white;
+	}
+	</style>
